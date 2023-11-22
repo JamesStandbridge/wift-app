@@ -1,0 +1,18 @@
+# Dépendances
+/node_modules
+
+# Fichiers de configuration et de build
+/dist
+/build
+/tsconfig.tsbuildinfo
+
+# Fichiers de logs
+*.log
+npm-debug.log*
+
+# Fichiers de l'environnement de développement
+.env
+
+# Autres fichiers et dossiers
+.DS_Store
+Thumbs.db

@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id        Int        @id @default(autoincrement())
+    email     String     @unique
+    firstname String
+    lastname  String
+    password  String
+    createdAt DateTime   @default(now())
+    updatedAt DateTime   @updatedAt
+    groups    Group[]    @relation("UserGroups")
+    wishLists WishList[]
+}
+
+model Group {
+    id        Int      @id @default(autoincrement())
+    name      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    users     User[]   @relation("UserGroups")
+}
+
+model WishList {
+    id        Int      @id @default(autoincrement())
+    name      String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    wishes    Wish[]
+    User      User?    @relation(fields: [userId], references: [id])
+    userId    Int?
+}
+
+enum WishStatus {
+    AVAILABLE
+    RESERVED
+    PURCHASED
+}
+
+model Wish {
+    id          Int        @id @default(autoincrement())
+    productName String
+    url         String
+    price       Int
+    createdAt   DateTime   @default(now())
+    updatedAt   DateTime   @updatedAt
+    WishList    WishList?  @relation(fields: [wishListId], references: [id])
+    wishListId  Int?
+    status      WishStatus @default(AVAILABLE)
+}
