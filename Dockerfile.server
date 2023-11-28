@@ -1,6 +1,6 @@
 FROM node:16 as dev
 
-WORKDIR /app
+WORKDIR /server
 
 COPY ./server/package*.json ./
 
@@ -10,5 +10,4 @@ COPY ./server .
 
 EXPOSE 3000
 
-# Command to run our application
 CMD ["npm", "run", "dev"]
