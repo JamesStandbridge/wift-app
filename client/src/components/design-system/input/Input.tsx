@@ -8,6 +8,7 @@ type Props = {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     name: string;
     type?: 'text' | 'password' | 'number';
+    prefix?: React.ReactNode;
 };
 
 import { Input as AntInput } from 'antd';
@@ -19,6 +20,7 @@ const Input = ({
     onChange,
     name,
     type = 'text',
+    prefix,
 }: Props) => {
     return (
         <DesignComponentContainer>
@@ -26,6 +28,7 @@ const Input = ({
             <InputContainer>
                 <AntInput
                     value={value}
+                    prefix={prefix}
                     placeholder={placeholder}
                     onChange={onChange}
                     name={name}

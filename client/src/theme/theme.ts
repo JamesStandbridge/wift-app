@@ -2,6 +2,7 @@ import { Color } from './theme.type';
 
 export interface ThemeType {
     primaryColor: Color;
+    lightPrimaryColor: Color;
     textColor: Color;
     valueColor: Color;
     accentColor: Color;
@@ -11,6 +12,7 @@ export interface ThemeType {
 
 const theme: ThemeType = {
     primaryColor: '#8B5FBF',
+    lightPrimaryColor: '#9A73B5',
     textColor: '#4A4A4A',
     valueColor: '#FFFFFF',
     accentColor: '#D6C6E1',

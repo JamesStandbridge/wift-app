@@ -1,10 +1,17 @@
 import { useState } from 'react';
 import { LoginPayload } from '../../../API/model/LoginPayload';
-import { LoginFormContainer, LoginTitle } from './login-form.styled';
+import {
+    LoginFormContainer,
+    LoginTitle,
+    CreateAccountText,
+    Link,
+} from './login-form.styled';
 import Input from '../../design-system/input/Input';
 import Button from '../../design-system/button/Button';
 import { login } from '../../../API/repository/auth-repository';
 import { useAuthStore } from '../../../state-manager/auth-store/authStore';
+import { WordSeparator } from '../../design-system/design-system.styled';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 type Props = {};
 
@@ -33,6 +40,7 @@ const LoginForm = ({}: Props) => {
         <LoginFormContainer>
             <LoginTitle>User login</LoginTitle>
             <Input
+                prefix={<UserOutlined />}
                 value={credentials.email}
                 name="email"
                 placeholder="Enter your email"
@@ -40,6 +48,7 @@ const LoginForm = ({}: Props) => {
                 label="email"
             />
             <Input
+                prefix={<LockOutlined />}
                 value={credentials.password}
                 name="password"
                 placeholder="Enter your password"
@@ -50,6 +59,11 @@ const LoginForm = ({}: Props) => {
             <Button block onClick={handleSubmit}>
                 Submit
             </Button>
+            <WordSeparator>OR</WordSeparator>
+
+            <CreateAccountText>
+                Need an account ? <Link>SIGN UP</Link>
+            </CreateAccountText>
         </LoginFormContainer>
     );
 };
